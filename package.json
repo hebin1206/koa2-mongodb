@@ -1,0 +1,24 @@
+{
+  "name": "koa-mongo-cli",
+  "version": "1.0.0",
+  "description": "使用koa+mongodb开发NodeJS后端服务器",
+  "main": "bin/start",
+  "scripts": {
+    "dev": "node bin/start --dev",
+    "start": "node bin/start"
+  },
+  "keywords": [
+    "koa",
+    "mongodb"
+  ],
+  "author": "HuiSir <q273250950>",
+  "license": "ISC",
+  "dependencies": {
+    "ioredis": "^4.9.5",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa2-cors": "^2.0.6",
+    "mongoose": "^5.5.7"
+  }
+}

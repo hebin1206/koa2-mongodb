@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+/**
+ * @author HuiSir q273250950
+ * @git https://gitee.com/huisir001/
+ * @blog http://www.zuifengyun.com/
+ */
+
+const app = require('../app')
+const {baseURL,port} = require('../config')  //配置文件
+
+//监听端口
+app.listen(port , () => {
+    //打印端口信息
+    console.log(new Date().toLocaleString(),`端口监听成功：${baseURL}:${port}`)
+})
