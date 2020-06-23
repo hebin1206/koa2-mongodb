@@ -1,7 +1,7 @@
 /**
  * 注册接口 post
  * 密码进行base64加密
- * @author Huisir q273250950
+ * @author Heyiyi
  */
 const router = require('koa-router')()
 const UserModel = require('../../db/models/user') 

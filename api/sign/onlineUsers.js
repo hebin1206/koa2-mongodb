@@ -1,7 +1,7 @@
 /**
  * 当前在线用户 GET
  * 获取当前redis缓存中的用户
- * @author Huisir q273250950
+ * @author Heyiyi
  */
 
 const router = require('koa-router')()

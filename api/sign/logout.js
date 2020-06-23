@@ -1,7 +1,7 @@
 /**
  * 注销登陆 POST
  * 注销登陆要将redis缓存中的用户删除
- * @author Huisir q273250950
+ * @author Heyiyi
  */
 
 const router = require('koa-router')()

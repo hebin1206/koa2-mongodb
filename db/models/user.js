@@ -1,6 +1,6 @@
 /**
  * 这里定义users表的数据类型和默认值
- * @author Huisir q273250950
+ * @author Heyiyi 
  */
 var db = require('../db')   //mongoose对象 
 var Schema = db.Schema;

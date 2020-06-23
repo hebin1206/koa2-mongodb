@@ -2,7 +2,7 @@
  * 这里使用mongoose模块连接mongodb数据库
  * 使用mongoose模块操作数据库的模块层在根目录db文件夹中
  * 连接数据库需要配置的选项在根目录config.js中
- * @author Huisir q273250950
+ * @author Heyiyi
  */
 
 const mongoose = require('mongoose')

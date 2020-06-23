@@ -1,6 +1,6 @@
 /**
  * redis 配置文件（存储登陆用户）
- * @author Huisir q273250950
+ * @author Heyiyi 
  */
 
 const Redis = require('ioredis')	//此模块已将redis封装为promise

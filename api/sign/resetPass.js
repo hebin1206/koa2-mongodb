@@ -1,7 +1,7 @@
 /**
  * 重置密码 POST
  * 重置密码后要将登陆状态变为未登陆
- * @author Huisir q273250950
+ * @author Heyiyi
  */
 
 const router = require('koa-router')()

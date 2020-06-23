@@ -1,7 +1,7 @@
 /**
  * 加密 & Token生成
  * 类似于jsonwebtoken模块，优于jsonwebtoken
- * @author Huisir q273250950
+ * @author Heyiyi
  */
 
 class EncryptToken {

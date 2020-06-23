@@ -11,7 +11,7 @@
     "koa",
     "mongodb"
   ],
-  "author": "HuiSir <q273250950>",
+  "author": "HeYiYi",
   "license": "ISC",
   "dependencies": {
     "ioredis": "^4.9.5",
