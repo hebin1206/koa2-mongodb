@@ -3,7 +3,7 @@
  * @Author: heyiyi 
  * @Date: 2020-06-18 14:14:31 
  * @Last Modified by: heyiyi
- * @Last Modified time: 2020-06-23 13:32:23
+ * @Last Modified time: 2020-06-23 15:28:28
  */
 let config = {}
 
@@ -12,7 +12,7 @@ config.REQ_CODE = {
   ERROR_OK: 200,
   ERROR_USER_NON_REGISTERED: 10003, //尚未注册
   ERROR_USER_PASSWORD_ERROR: 10000, //密码错误
-  ERROR_PASSWORD_SAME: 10000, //密码错误
+  ERROR_PASSWORD_SAME: 10001, //新密码就密码相同
   ERROR_USER_REGISTERED: 10007, //账号已注册
   ERROR_USER_ALREADY_EXISTS: 10007, //账号已注册
   ERROR_SMS_CODE_INVALID: 10009, //验证码无效

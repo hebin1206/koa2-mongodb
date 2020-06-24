@@ -63,6 +63,51 @@ class AccountServe {
   }
 
   /**
+   * 获取所有用户
+   */
+  async allUser() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        var findRes = await accountModel.allUser()
+        resolve(findRes)
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
+
+  /**
+   * 删除用户
+   */
+  async delUser(userid) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        var findRes = await accountModel.delUser(userid)
+        resolve({
+          msg: "删除成功"
+        })
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
+
+  /**
+   * 获取所有登录用户
+   */
+  async onlineUsers() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const redisUsers = await redis.keys('*')
+        var findRes = await accountModel.onlineUsers(redisUsers)
+        resolve(findRes)
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
+
+  /**
    * 注册
    * @param {*} option 
    */
