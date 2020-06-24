@@ -86,7 +86,7 @@ class Account extends MongoModel {
   }
 
   /**
-   * 注册
+   * 注册 添加新用户
    * @param {userInfo} option 
    */
   async signup(option) {
@@ -109,6 +109,37 @@ class Account extends MongoModel {
         } else {
           reject({
             code: SERVER_CONFIG.REQ_CODE.ERROR_USER_ALREADY_EXISTS
+          })
+        }
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
+  /**
+   * 更新用户信息
+   * @param {userInfo} option 
+   */
+  async updateUserInfo(option) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const findRes = await this.findOne({
+          _id: option.userId
+        }, '-password -__v')
+
+        if (findRes) {
+          // option = Object.assign({}, findRes, option)
+          const updateRes = await this.findByIdAndUpdate(findRes._id, option) //新增
+          //返回结果
+          resolve({
+            _id: updateRes._id,
+            username: updateRes.username,
+            sex: updateRes.sex,
+            state: updateRes.state
+          })
+        } else {
+          reject({
+            code: SERVER_CONFIG.REQ_CODE.ERROR_USER_NON_REGISTERED
           })
         }
       } catch (err) {

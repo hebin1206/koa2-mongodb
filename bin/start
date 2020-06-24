@@ -14,3 +14,7 @@ app.listen(port , () => {
     //打印端口信息
     console.log(new Date().toLocaleString(),`端口监听成功：${baseURL}:${port}`)
 })
+
+app.on('error', (err, ctx) =>
+    console.error('server error', err)
+);

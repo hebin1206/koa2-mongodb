@@ -8,17 +8,17 @@ const accountServe = require("./account-services")
 const SERVER_CONFIG = require('../../config/server_config.conf');
 const redis = require('../../utils/redis') //redis
 
-/**
- * 登录
- */
+
 router.post('/login', _login)
 router.post('/logout', _logout)
 router.post('/signup', _signup)
 router.post('/resetPass', _resetPass)
 router.get('/allUser', _allUser)
 router.get('/onlineUsers', _onlineUsers)
-router.post('/delUser', _delUser)
 
+
+
+module.exports = router
 /**
  * 登录server
  * @param {返回数据} ctx 
@@ -109,28 +109,6 @@ async function _resetPass(ctx) {
 }
 
 /**
- * 删除用户
- * @param {*} ctx 
- */
-async function _delUser(ctx) {
-  let {
-    delUserId,
-  } = ctx.request.body;
-  const {
-    userid
-  } = ctx.curUserInfo
-  
-  if (delUserId == userid) {
-    return ctx.resMessage(SERVER_CONFIG.REQ_CODE.ERROR_PARAMS_INVALID, {
-      msg: '不能删除当前登录用户'
-    })
-
-  }
-  let promise = accountServe.delUser(delUserId)
-  await ctx.writeByPromise(promise)
-}
-
-/**
  * 获取所有用户列表
  * @param {*} ctx 
  */
@@ -149,5 +127,3 @@ async function _onlineUsers(ctx) {
   await ctx.writeByPromise(promise)
 }
 
-
-module.exports = router

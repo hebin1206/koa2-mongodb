@@ -77,22 +77,6 @@ class AccountServe {
   }
 
   /**
-   * 删除用户
-   */
-  async delUser(userid) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        var findRes = await accountModel.delUser(userid)
-        resolve({
-          msg: "删除成功"
-        })
-      } catch (err) {
-        reject(err)
-      }
-    })
-  }
-
-  /**
    * 获取所有登录用户
    */
   async onlineUsers() {

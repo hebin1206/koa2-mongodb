@@ -14,6 +14,11 @@ module.exports = function message() {
       }
       ctx.response.type = ctx.response.type || 'json'
       ctx.response.body = output
+
+      //后台捕获
+      // if (code !== 401 && code !== 403 && code !== 404 && code !== 200)
+      //   ctx.app.emit('error', ctx); //如果错误被try...catch捕获，就不会触发error事件，故需要使用emit方法
+
     }
     await next();
   }

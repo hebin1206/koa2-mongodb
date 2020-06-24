@@ -62,6 +62,55 @@ class MongoModel {
       }
     })
   }
+
+  /**
+   * 分页查询
+   * @param {} option 
+   */
+  async pageFind(option) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let {
+          page,
+          size
+        } = option
+
+        page = Number(page)
+        size = Number(size)
+        const count = await this.model.countDocuments({})
+        const findRes = await this.model.find({}).skip((page - 1) * size).limit(size).sort({
+          '_id': -1
+        })
+
+        const resData = {
+          count,
+          list: findRes
+        }
+        resolve(resData)
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
+
+  /**
+   * 根据id 更新数据
+   * @param {*} id 
+   * @param {*} data 
+   */
+  async findByIdAndUpdate(id, data) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const findRes = await this.model.findByIdAndUpdate(id, data, {
+          new: true
+        })
+        resolve(findRes)
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
+
   /**
    * 删除一条数据
    * @param {} option 
