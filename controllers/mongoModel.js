@@ -78,10 +78,9 @@ class MongoModel {
         page = Number(page)
         size = Number(size)
         const count = await this.model.countDocuments({})
-        const findRes = await this.model.find({}).skip((page - 1) * size).limit(size).sort({
+        const findRes = await this.model.find({}, '-password -__v').skip((page - 1) * size).limit(size).sort({
           '_id': -1
         })
-
         const resData = {
           count,
           list: findRes

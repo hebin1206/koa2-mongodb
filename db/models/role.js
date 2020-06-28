@@ -6,25 +6,13 @@ var db = require('../db') //mongoose对象
 var Schema = db.Schema;
 
 //Schema（模式/架构）对象
-var userSchema = new Schema({
-    username: {
+var roleSchema = new Schema({
+    name: {
         type: String,
         required: true
     },
-    password: {
-        type: String,
-        required: true
-    },
-    role: {
+    menu: {
         type: Array,
-        default: []
-    },
-    sex: {
-        type: Number,
-        default: 0
-    },
-    state: {
-        type: Number,
         default: 0
     },
     createTime: {
@@ -33,4 +21,4 @@ var userSchema = new Schema({
     }
 })
 
-module.exports = db.model('user', userSchema)
+module.exports = db.model('role', roleSchema)

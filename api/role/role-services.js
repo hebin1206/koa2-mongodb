@@ -1,10 +1,6 @@
 const SERVER_CONFIG = require('../../config/server_config.conf');
-const userModel = require('../../controllers/account/account')
+const roleModel = require('../../controllers/role/role')
 
-const {
-  creatToken,
-  encrypt
-} = require('../../utils/encryptToken') //加密
 const redis = require('../../utils/redis') //redis
 
 class UserServe {
@@ -13,13 +9,13 @@ class UserServe {
   }
   /**
    * 添加新用户
-   * @param {object} userInfo 
+   * @param {object} roleInfo
+   *  
    */
-  async add(userInfo) {
+  async add(roleInfo) {
     return new Promise(async (resolve, reject) => {
       try {
-        userInfo.password = encrypt(userInfo.password)
-        var findRes = await userModel.signup(userInfo)
+        var findRes = await roleModel.add(roleInfo)
         resolve(findRes)
       } catch (err) {
         reject(err)
@@ -27,13 +23,13 @@ class UserServe {
     })
   }
   /**
-   * 更新新用户
+   * 更新
    * @param {object} userInfo 
    */
   async update(userInfo) {
     return new Promise(async (resolve, reject) => {
       try {
-        var findRes = await userModel.updateUserInfo(userInfo)
+        var findRes = await roleModel.update(userInfo)
         resolve(findRes)
       } catch (err) {
         reject(err)
@@ -46,7 +42,7 @@ class UserServe {
   async list(option) {
     return new Promise(async (resolve, reject) => {
       try {
-        var findRes = await userModel.pageFind(option)
+        var findRes = await roleModel.pageFind(option)
         resolve(findRes)
       } catch (err) {
         reject(err)
@@ -55,12 +51,12 @@ class UserServe {
   }
 
   /**
-   * 删除用户
+   * 删除
    */
-  async delUser(userid) {
+  async del(id) {
     return new Promise(async (resolve, reject) => {
       try {
-        var findRes = await userModel.delUser(userid)
+        var findRes = await roleModel.del(id)
         resolve({
           msg: "删除成功"
         })

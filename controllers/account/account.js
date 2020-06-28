@@ -131,12 +131,7 @@ class Account extends MongoModel {
           // option = Object.assign({}, findRes, option)
           const updateRes = await this.findByIdAndUpdate(findRes._id, option) //新增
           //返回结果
-          resolve({
-            _id: updateRes._id,
-            username: updateRes.username,
-            sex: updateRes.sex,
-            state: updateRes.state
-          })
+          resolve(updateRes)
         } else {
           reject({
             code: SERVER_CONFIG.REQ_CODE.ERROR_USER_NON_REGISTERED

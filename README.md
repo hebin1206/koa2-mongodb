@@ -1,7 +1,16 @@
 # Koa-mongo-cli
 
+### 启动mongo 
+
+>mongod --dbpath /Users/hebin/Desktop/tempdata
+
+>mongod --dbpath [数据路径]
+
+### 启动rides
+>redis-server
+
 ### 介绍
-使用koa+mongodb开发NodeJS后端服务器脚手架
+>使用koa+mongodb开发NodeJS后端服务器脚手架
 
 #### api接口文件夹说明
 > 此文件夹放置前台请求的接口模块
