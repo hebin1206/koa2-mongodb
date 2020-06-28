@@ -3,7 +3,7 @@
  * @Author: heyiyi 
  * @Date: 2020-06-24 10:06:23 
  * @Last Modified by: heyiyi
- * @Last Modified time: 2020-06-24 14:09:31
+ * @Last Modified time: 2020-06-28 11:02:11
  */
 const router = require('koa-router')()
 const userServe = require("./user-services")
@@ -38,13 +38,15 @@ async function _add(ctx) {
   let promise = userServe.add(option)
   await ctx.writeByPromise(promise)
 }
+
 /**
  * 更新信息
  */
 async function _update(ctx) {
   let userInfo = ctx.request.body;
+  console.log(ctx.request.body)
   if (!userInfo.userId) {
-    return ctx.resMessage(SERVER_CONFIG.REQ_CODE.ERROR_PARAMS_INVALID)
+    return ctx.resMessage(SERVER_CONFIG.REQ_CODE.ERROR_USER_NOT_LOGIN)
   }
 
   let promise = userServe.update(userInfo)

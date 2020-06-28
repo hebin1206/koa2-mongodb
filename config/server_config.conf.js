@@ -3,7 +3,7 @@
  * @Author: heyiyi 
  * @Date: 2020-06-18 14:14:31 
  * @Last Modified by: heyiyi
- * @Last Modified time: 2020-06-23 15:28:28
+ * @Last Modified time: 2020-06-28 10:59:19
  */
 let config = {}
 
@@ -17,6 +17,8 @@ config.REQ_CODE = {
   ERROR_USER_ALREADY_EXISTS: 10007, //账号已注册
   ERROR_SMS_CODE_INVALID: 10009, //验证码无效
   ERROR_USER_NAME_INVALID: -10004, //用户名码无效
+  ERROR_USER_NOT_LOGIN: -10004, //用户名码无效
+
 
   ERROR_PARAMS_INVALID: -10100, //参数错误
   ERROR_EXECUTE_FAILED: -10200, //执行错误

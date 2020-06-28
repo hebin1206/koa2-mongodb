@@ -65,9 +65,13 @@ class MongoModel {
 
   /**
    * 分页查询
-   * @param {} option 
+   * @param {分页} option 
+   * @param {查询条件} parameter 
+   * @param {排序} sort 
    */
-  async pageFind(option) {
+  async pageFind(option, parameter = {}, sort = {
+    '_id': -1
+  }) {
     return new Promise(async (resolve, reject) => {
       try {
         let {
@@ -77,10 +81,8 @@ class MongoModel {
 
         page = Number(page)
         size = Number(size)
-        const count = await this.model.countDocuments({})
-        const findRes = await this.model.find({}, '-password -__v').skip((page - 1) * size).limit(size).sort({
-          '_id': -1
-        })
+        const count = await this.model.countDocuments(parameter)
+        const findRes = await this.model.find(parameter, '-password -__v').skip((page - 1) * size).limit(size).sort(sort)
         const resData = {
           count,
           list: findRes
