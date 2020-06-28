@@ -1,0 +1,698 @@
+{
+	"variables": [],
+	"info": {
+		"name": "backend",
+		"_postman_id": "f880acff-d60b-42e2-72fb-22befde6754b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "account",
+			"description": "",
+			"item": [
+				{
+					"name": "注册",
+					"request": {
+						"url": "http://{{host}}/api/account/signup",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"12348\",\n\t\"password\":\"123\",\n\t\"sex\":\"1\",\n\t\"state\":\"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "登录",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"if (data.data.token) {",
+									" tests[\"Body has token\"] = true;",
+									" postman.setEnvironmentVariable(\"token\", data.data.token);",
+									"}",
+									"else {",
+									" tests[\"Body has token\"] = false;",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://{{host}}/api/account/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"123\",\n\t\"password\":\"123\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改密码",
+					"request": {
+						"url": "http://{{host}}/api/account/resetPass",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"oldPass\":\"1234\",\n\t\"newPass\":\"1234\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "登出",
+					"request": {
+						"url": "http://{{host}}/api/account/logout",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "获取所有用户",
+					"request": {
+						"url": "http://{{host}}/api/account/allUser",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"123\",\n\t\"password\":\"12\",\n\t\"sex\":\"1\",\n\t\"state\":\"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "获取当前登录所有用户",
+					"request": {
+						"url": "http://{{host}}/api/account/onlineUsers",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"123\",\n\t\"password\":\"12\",\n\t\"sex\":\"1\",\n\t\"state\":\"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"description": "用户信息",
+			"item": [
+				{
+					"name": "获取所有用户",
+					"request": {
+						"url": {
+							"raw": "http://{{host}}/api/user/list?page=1&size=5",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "size",
+									"value": "5",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"123\",\n\t\"password\":\"12\",\n\t\"sex\":\"1\",\n\t\"state\":\"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "添加新用户",
+					"request": {
+						"url": "http://{{host}}/api/user/add",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"12345678\",\n\t\"password\":\"123\",\n\t\"sex\":\"1\",\n\t\"state\":\"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "删除用户",
+					"request": {
+						"url": "http://{{host}}/api/user/delUser",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"delUserId\":\"5ef2c2c0de25782d1a4fe875\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "更新用户信息",
+					"request": {
+						"url": "http://{{host}}/api/user/update",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\":\"5ef2c2b9de25782d1a4fe874\",\n\t\"sex\":\"11\",\n\t\"state\":\"111\",\n\t\"role\":[\"5ef305a334402f3f9433767b\"]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "role",
+			"description": "角色管理\n",
+			"item": [
+				{
+					"name": "获取所有角色",
+					"request": {
+						"url": {
+							"raw": "http://{{host}}/api/role/list?page=1&size=5",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"role",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "size",
+									"value": "5",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"123\",\n\t\"password\":\"12\",\n\t\"sex\":\"1\",\n\t\"state\":\"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "添加角色",
+					"request": {
+						"url": "http://{{host}}/api/role/add",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"管理员1\",\n\t\"menu\":[2,3,4]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "删除角色",
+					"request": {
+						"url": "http://{{host}}/api/role/del",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"5ef304f734402f3f9433767a\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "更新角色信息",
+					"request": {
+						"url": "http://{{host}}/api/role/update",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"5ef305a334402f3f9433767b\",\n\t\"menu\":[\"5ef802bf53949917541fd1c3\",\"5ef8025bf5f48c17190e0f67\"],\n\t\"name\":\"管理员2\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "menu",
+			"description": "角色管理\n",
+			"item": [
+				{
+					"name": "获取菜单",
+					"request": {
+						"url": {
+							"raw": "http://{{host}}/api/menu/list?page=1&size=10",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"menu",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "",
+									"value": "",
+									"equals": false,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"123\",\n\t\"password\":\"12\",\n\t\"sex\":\"1\",\n\t\"state\":\"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "添加菜单",
+					"request": {
+						"url": "http://{{host}}/api/menu/add",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"菜单1-3-2\",\n\t\"path\": \"a/b/c\",\n\t\"backApi\": \"a/b/c\",\n\t\"sort\": 3,\n\t\"parentId\": \"5ef83eee8b7364268db0ea7c\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "删除菜单",
+					"request": {
+						"url": "http://{{host}}/api/menu/del",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"5ef80254f5f48c17190e0f66\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "更新菜单",
+					"request": {
+						"url": "http://{{host}}/api/menu/update",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"5ef80261f5f48c17190e0f68\",\n\t\"name\":\"管理员2\",\n\t\"path\": \"a/b/cc\",\n\t\"backApi\": \"a/b/c\"\n\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "获取登录用户菜单",
+					"request": {
+						"url": {
+							"raw": "http://{{host}}/api/menu/listByUserId?userId=5ef1b41c9f0bf91c65858c4a",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"menu",
+								"listByUserId"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "5ef1b41c9f0bf91c65858c4a",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"123\",\n\t\"password\":\"12\",\n\t\"sex\":\"1\",\n\t\"state\":\"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "获取菜单树",
+					"request": {
+						"url": "http://{{host}}/api/menu/tree",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"123\",\n\t\"password\":\"12\",\n\t\"sex\":\"1\",\n\t\"state\":\"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "测试get",
+			"request": {
+				"url": "http://{{host}}/modules/user/list",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "测试post",
+			"request": {
+				"url": "http://{{host}}/modules/user/create",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\": \"和一一\",\n    \"account\": \"hebin\",\n    \"password\": \"123456\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{host}}/info",
+			"request": {
+				"url": "http://{{host}}/info",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"hobby\":\"12\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
