@@ -75,6 +75,19 @@ class AccountServe {
       }
     })
   }
+  /**
+   * 获取用户
+   */
+  async userInfo(userId) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        var findRes = await accountModel.userInfo(userId)
+        resolve(findRes)
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
 
   /**
    * 获取所有登录用户

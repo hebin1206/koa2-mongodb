@@ -40,6 +40,21 @@ class Account extends MongoModel {
       }
     })
   }
+  /**
+   * 查询所有用户
+   */
+  async userInfo(userId) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let res = await this.findOne({
+          _id: userId
+        }, '-password -__v')
+        resolve(res)
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
 
 
   /**

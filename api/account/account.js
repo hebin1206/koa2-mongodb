@@ -15,6 +15,7 @@ router.post('/signup', _signup)
 router.post('/resetPass', _resetPass)
 router.get('/allUser', _allUser)
 router.get('/onlineUsers', _onlineUsers)
+router.get('/userInfo', _userInfo)
 
 
 
@@ -124,6 +125,18 @@ async function _allUser(ctx) {
 async function _onlineUsers(ctx) {
 
   let promise = accountServe.onlineUsers()
+  await ctx.writeByPromise(promise)
+}
+
+/**
+ * 获取当前登录用户
+ * @param {*} ctx 
+ */
+async function _userInfo(ctx) {
+  const {
+    userid
+  } = ctx.curUserInfo
+  let promise = accountServe.userInfo(userid)
   await ctx.writeByPromise(promise)
 }
 
