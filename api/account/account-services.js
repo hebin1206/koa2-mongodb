@@ -28,7 +28,6 @@ class AccountServe {
   async login(option) {
     return new Promise(async (resolve, reject) => {
       //与数据库比对
-
       const res = await accountModel.login(option.username, encrypt(option.password)) //不返回密码
       if (!res) { //确定用户是否存在
         reject({

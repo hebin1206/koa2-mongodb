@@ -29,7 +29,6 @@ async function _login(ctx) {
     username,
     password
   } = ctx.request.body
-
   if (!username || !password) {
     return ctx.resMessage(SERVER_CONFIG.REQ_CODE.ERROR_PARAMS_INVALID)
   }

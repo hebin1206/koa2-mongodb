@@ -4,7 +4,8 @@
  */
 
 const Koa = require('koa')
-const bodyparser = require('koa-bodyparser')
+// const bodyparser = require('koa-bodyparser')
+const koaBody = require('koa-body');
 const cors = require('koa2-cors') //解决跨域中间件
 const app = new Koa()
 const isDev = process.argv.includes('--dev') //开发环境
@@ -15,7 +16,13 @@ const auth = require('./libs/koa-auth') //权限
 const writeByPromise = require('./libs/koa-write-by-promise')() //权限
 
 //中间件
-app.use(bodyparser())
+// app.use(bodyparser())
+app.use(koaBody({
+    multipart: true,
+    formidable: {
+        maxFileSize: 20000 * 1024 * 1024    // 设置上传文件大小最大限制，默认2M
+    }
+}));
 
 //允许跨域
 if (isDev) {
