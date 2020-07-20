@@ -24,7 +24,6 @@ app.use(koaBody({
     }
 }));
 
-
 //允许跨域
 if (isDev) {
     app.use(cors())

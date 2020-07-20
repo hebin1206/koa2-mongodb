@@ -41,14 +41,15 @@ class Account extends MongoModel {
     })
   }
   /**
-   * 查询所有用户
+   * 查询当前登录用户
    */
   async userInfo(userId) {
     return new Promise(async (resolve, reject) => {
       try {
-        let res = await this.findOne({
+        let res = await UserModel.findById({
           _id: userId
-        }, '-password -__v')
+        }, '-password -__v').lean()
+        console.log(res)
         resolve(res)
       } catch (err) {
         reject(err)

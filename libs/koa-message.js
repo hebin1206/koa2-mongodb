@@ -10,7 +10,7 @@ module.exports = function message() {
         code: code
       };
       if (data === null || typeof (data) !== 'object' || Object.keys(data).length > 0) {
-        output.data = data;
+        output.data = Object.assign({}, data, { status: 0 });
       }
       ctx.response.type = ctx.response.type || 'json'
       ctx.response.body = output
